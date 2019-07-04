@@ -10,5 +10,5 @@
   <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
   <plugin name="cordova-plugin-x-toast" spec="2.6.2" />
   <plugin name="cordova-plugin-pdialog" spec="2.0.1" />
-  <plugin name="de.compeople.cordova.screenshot" spec="1.0.2" />
+  <plugin name="cordova-custom-screenshot" spec="https://github.com/MCROEngineering/cordova-custom-screenshot.git" />
 </widget>
