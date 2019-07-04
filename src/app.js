@@ -73,7 +73,7 @@ new Button({right:0,top:0,text:'Envoyer',style:'flat',background:'#009688'})
     .then((responseAjax)=>{
       require('./helpers/plugins/pDialog.js')("",false,false);
       if(responseAjax.message === "Mail envoyé"){
-        require('./helpers/plugins/toast.js')("Données du formulaire envoyées avec succés.",4000,"bottom");
+        require('./helpers/plugins/toast.js')("Données du formulaire envoyées avec succés.",3000,"bottom");
         // Ici on appele la page de récapitulatif
         require('./views/printScreen.js')({date:momentDate.text,hour:momentHour.text,choosenGame:pickerChoices[userChoice],validationNumber:validationNumber,phoneNumber:telephone.text});
       }else if(responseAjax.message === "Pas de connexion internet, veuillez réessayer."){

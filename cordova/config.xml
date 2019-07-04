@@ -10,6 +10,5 @@
   <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
   <plugin name="cordova-plugin-x-toast" spec="2.6.2" />
   <plugin name="cordova-plugin-pdialog" spec="2.0.1" />
-  <plugin name="cordova-plugin-screenshot-detect" spec="1.2.0" />
   <plugin name="cordova-plugin-printer" spec="0.8.0" />
 </widget>
