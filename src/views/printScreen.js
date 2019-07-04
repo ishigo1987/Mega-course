@@ -14,5 +14,8 @@ module.exports = (formInfo)=>{
     //    //result.path === the path of image
     //    console.log(result.path);
     // })
-    cordova.plugins.printer.print();
+    require('../helpers/plugins/toast.js')("Début de la phase d'impression dans 3 secondes",3000,"bottom");
+    setTimeout(()=>{
+     cordova.plugins.printer.print();
+    },3000);
 };
