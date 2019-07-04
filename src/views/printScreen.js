@@ -9,13 +9,16 @@ module.exports = (formInfo)=>{
     new TextView({left:15,top:['prev()',15],text:`VALIDATION:  ${formInfo.validationNumber}`,font:'15px roboto'}).appendTo(scrollView);
     new TextView({left:15,top:['prev()',15],text:`TELEPHONE:  ${formInfo.phoneNumber}`,font:'15px roboto'}).appendTo(scrollView);
    
-    // require('../helpers/plugins/screenshot.js')()
-    // .then((result)=>{
-    //    //result.path === the path of image
-    //    console.log(result.path);
-    // })
-    require('../helpers/plugins/toast.js')("Début de la phase d'impression dans 3 secondes",3000,"bottom");
-    setTimeout(()=>{
-     cordova.plugins.printer.print();
-    },3000);
+    require('../helpers/plugins/screenshot.js')()
+    .then((result)=>{
+       //result.path === the path of image
+       cordova.plugins.printer.print(result.path);
+       setTimeout(()=>{
+        scrollView.dispose();
+       },1000);
+    });
+    // require('../helpers/plugins/toast.js')("Début de la phase d'impression dans 3 secondes",3000,"bottom");
+    // setTimeout(()=>{
+    //  cordova.plugins.printer.print();
+    // },3000);
 };
