@@ -1,6 +1,7 @@
 module.exports = ()=>{
   return new Promise((resolve)=>{
-    navigator.screenshot.save(function(error,res){
+    console.log("test un deux")
+    navigator.screenshot.save((error,res)=>{
      if(error){
        console.error(error);
      }else{
