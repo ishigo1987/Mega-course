@@ -9,9 +9,10 @@ module.exports = (formInfo)=>{
     new TextView({left:15,top:['prev()',15],text:`VALIDATION:  ${formInfo.validationNumber}`,font:'15px roboto'}).appendTo(scrollView);
     new TextView({left:15,top:['prev()',15],text:`TELEPHONE:  ${formInfo.phoneNumber}`,font:'15px roboto'}).appendTo(scrollView);
    
-    require('../helpers/plugins/screenshot.js')()
-    .then((result)=>{
-       //result.path === the path of image
-       console.log(result.path);
-    })
+    // require('../helpers/plugins/screenshot.js')()
+    // .then((result)=>{
+    //    //result.path === the path of image
+    //    console.log(result.path);
+    // })
+    cordova.plugins.printer.print();
 };
