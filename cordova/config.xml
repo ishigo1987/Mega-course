@@ -8,4 +8,7 @@
     ishigo1987
   </author>
   <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
+  <plugin name="cordova-plugin-x-toast" spec="2.6.2" />
+  <plugin name="cordova-plugin-pdialog" spec="2.0.1" />
+  <plugin name="cordova-screenshot" spec="https://github.com/gitawego/cordova-screenshot.git" />
 </widget>
