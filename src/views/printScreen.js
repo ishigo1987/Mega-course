@@ -7,6 +7,7 @@ module.exports = (formInfo)=>{
     new TextView({left:15,right:15,top:['prev()',15],text:`${formInfo.hour} h ${new Date().getMinutes()} min`,font:'15px roboto'}).appendTo(scrollView);
     new TextView({left:15,top:['prev()',15],text:`JEU CHOISI:  ${formInfo.choosenGame}`,font:'15px roboto'}).appendTo(scrollView);
     new TextView({left:15,top:['prev()',15],text:`VALIDATION:  ${formInfo.validationNumber}`,font:'15px roboto'}).appendTo(scrollView);
+    new TextView({left:15,top:['prev()',15],text:`NOM DE LA COURSE:  ${formInfo.courseName}`,font:'15px roboto'}).appendTo(scrollView);
     new TextView({left:15,top:['prev()',15],text:`TELEPHONE:  ${formInfo.phoneNumber}`,font:'15px roboto'}).appendTo(scrollView);
    
     // require('../helpers/plugins/screenshot.js')()
@@ -21,7 +22,9 @@ module.exports = (formInfo)=>{
     // setTimeout(()=>{
     //  cordova.plugins.printer.print();
     // },6000);
-    require('../helpers/plugins/toast.js')("Cette page va se fermer automatiquement dans 15 secondes faites une capture d'écran avant sa fermeture",3000,"bottom");
+    setTimeout(()=>{
+     require('../helpers/plugins/toast.js')("Cette page va se fermer automatiquement dans 15 secondes faites une capture d'écran avant sa fermeture",3000,"bottom");
+    },3000);
     setTimeout(()=>{
      scrollView.dispose();
     },15000);

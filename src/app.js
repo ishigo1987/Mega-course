@@ -34,6 +34,10 @@ const case3 = new TextInput({left:['prev()',5],width:40,alignment:'centerX',font
 const case4 = new TextInput({left:['prev()',5],width:40,alignment:'centerX',font:'14px roboto',keyboard:'number',excludeFromLayout:true}).appendTo(compositeValidation);
 const case5 = new TextInput({left:['prev()',5],width:40,alignment:'centerX',font:'14px roboto',keyboard:'number',excludeFromLayout:true}).appendTo(compositeValidation);
 
+const compositeCourseName = new Composite({left:15,top:['prev()',20],right:15}).appendTo(scrollView);
+new TextView({left:0,top:15,text:'NOM DE LA COURSE:',font:'15px roboto'}).appendTo(compositeCourseName);
+const courseName = new TextInput({left:['prev()',5],right:0,message:'Nom de la course',font:'14px roboto'}).appendTo(compositeCourseName);
+
 const compositeTelephone = new Composite({left:15,top:['prev()',20],right:15}).appendTo(scrollView);
 new TextView({left:0,top:15,text:'TELEPHONE:',font:'15px roboto'}).appendTo(compositeTelephone);
 const telephone = new TextInput({left:['prev()',5],right:0,message:'Entrez votre téléphone',font:'14px roboto',keyboard:'phone'}).appendTo(compositeTelephone);
@@ -48,10 +52,11 @@ const compositeButton = new Composite({left:15,top:['prev()',50],right:15}).appe
   case4.text = "";
   case5.text = "";
   telephone.text = "";
+  courseName.text = "";
 }).appendTo(compositeButton);
 new Button({right:0,top:0,text:'Envoyer',style:'flat',background:'#009688'})
 .onSelect(()=>{
-  if(userChoice === undefined || [telephone.text,case1.text,case2.text,case3.text].includes("") === true){
+  if(userChoice === undefined || [telephone.text,case1.text,case2.text,case3.text].includes("") === true || courseName.text === ""){
     alertDialog("Info","Veuillez remplir tout les champs.","Fermer","");
   }else if(telephone.text.length !== 9){
     alertDialog("Info","Veuillez entrer un numéro de téléphone valide.","Fermer","");
@@ -69,13 +74,13 @@ new Button({right:0,top:0,text:'Envoyer',style:'flat',background:'#009688'})
       validationNumber = `${case1.text}, ${case2.text}, ${case3.text}, ${case4.text}, ${case5.text}`;  
     }
     require('./helpers/plugins/pDialog.js')("Envoi du récapitulatif du formulaire par mail",false,true);
-    require('./helpers/ajax.js')(JSON.stringify({date:momentDate.text,hour:momentHour.text,choosenGame:pickerChoices[userChoice],validationNumber:validationNumber,phoneNumber:telephone.text}))
+    require('./helpers/ajax.js')(JSON.stringify({date:momentDate.text,hour:momentHour.text,choosenGame:pickerChoices[userChoice],validationNumber:validationNumber,courseName:courseName.text,phoneNumber:telephone.text}))
     .then((responseAjax)=>{
       require('./helpers/plugins/pDialog.js')("",false,false);
       if(responseAjax.message === "Mail envoyé"){
         require('./helpers/plugins/toast.js')("Données du formulaire envoyées avec succés.",3000,"bottom");
         // Ici on appele la page de récapitulatif
-        require('./views/printScreen.js')({date:momentDate.text,hour:momentHour.text,choosenGame:pickerChoices[userChoice],validationNumber:validationNumber,phoneNumber:telephone.text});
+        require('./views/printScreen.js')({date:momentDate.text,hour:momentHour.text,choosenGame:pickerChoices[userChoice],validationNumber:validationNumber,courseName:courseName.text,phoneNumber:telephone.text});
       }else if(responseAjax.message === "Pas de connexion internet, veuillez réessayer."){
         require('./helpers/plugins/toast.js')(responseAjax.message,4000,"bottom");
       }
